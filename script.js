@@ -15,10 +15,12 @@
 /* Для добавления предсказания в список воспользуйся шаблоном forecast-item */
 
 const forecastBtn = document.querySelector('.forecast-btn');
+const forecastItemList = document.getElementById('forecast-item');
+const container = document.querySelector('.forecasts');
 
 forecastBtn.addEventListener('click', () => {
 
-    let predictionNumber = Math.floor(Math.random() * 3);
+    const predictionNumber = Math.floor(Math.random() * 3);
     let predictionText = "";
     const probability = Math.floor(Math.random() * 100);
 
@@ -33,11 +35,9 @@ forecastBtn.addEventListener('click', () => {
     document.querySelector('.current-forecast h1').innerText = predictionText;
     document.querySelector('.current-forecast p').innerText = `вероятность: ${probability}%`;
 
-    const forecastItemList = document.getElementById('forecast-item');
     const forecastItem = document.importNode(forecastItemList.content, true);
     forecastItem.querySelector('h3').innerText = predictionText;
     forecastItem.querySelector('p').innerText = `вероятность: ${probability}%`;
 
-    const container = document.querySelector('.forecasts');
     container.prepend(forecastItem);
 });
